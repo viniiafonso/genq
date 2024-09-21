@@ -75,3 +75,12 @@ type GenqArgumentList struct {
 	PositionalArgs []GenqValue
 	NamedArgs      []GenqNamedExpression
 }
+
+func (argList GenqArgumentList) GetValue(key string) (GenqValue, bool) {
+	for _, arg := range argList.NamedArgs {
+		if arg.Name == key {
+			return arg.Value, true
+		}
+	}
+	return GenqValue{}, false
+}
