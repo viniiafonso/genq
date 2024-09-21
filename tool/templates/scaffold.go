@@ -51,6 +51,10 @@ func templateConstructor(str []string, classDecl GenqClassDeclaration) []string 
 
 				if param.Annotation.Identifier.Name == "Default" {
 					defaultValue = fmt.Sprintf(" = %s", param.Annotation.Arguments.PositionalArgs[0].RawValue)
+				} else if param.Annotation.Identifier.Name == "JsonKey" {
+					if value, exists := param.Annotation.Arguments.GetValue("defaultValue"); exists {
+						defaultValue = fmt.Sprintf(" = %s", value.RawValue)
+					}
 				}
 
 				str = append(str, indent(4, fmt.Sprintf("this.%s%s,", param.Name, defaultValue)))
