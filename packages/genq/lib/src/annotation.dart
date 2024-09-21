@@ -48,3 +48,10 @@ class JsonValue {
 
   const JsonValue(this.value);
 }
+
+/// Annotation to specify the default value of arguments that are not required
+class Default {
+  final Object? defaultValue;
+
+  const Default(this.defaultValue);
+}
