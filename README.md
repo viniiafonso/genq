@@ -33,6 +33,7 @@ The above image shows the difference in performance between `build_runner` and `
   - [4. Generate the code](#4-generate-the-code)
 - [Defining Data Classes](#defining-data-classes)
   - [Overview](#overview)
+  - [Default values](#default-values)
   - [JSON Serialization/Deserialization](#json-serializationdeserialization)
     - [Customize JSON Serialization](#customize-json-serialization)
       - [Custom fromJson and toJson functions](#custom-fromjson-and-tojson-functions)
@@ -128,6 +129,35 @@ The generated class will have the following methods:
 - `toString`: Generate a human-readable string representation of the data class.
 - `==`: Compare two data classes for equality.
 
+## Default values
+
+To provide default values for a constructor parameter, you need to use the `@Default(<value>)` annotation. This value will be ignored if the parameter is `required`.
+
+```dart
+import 'package:genq/genq.dart';
+
+part 'user.genq.dart';
+
+@genq
+class User with _$User {
+  factory User({
+    required String name,
+    @Default(99) bool age,
+    @Default(true) bool isEnabled,
+  }) = _User;
+}
+```
+
+This example will generate the following constructor:
+
+```dart
+_User({
+  required this.name,
+  this.age = 99,
+  this.isEnabled = true,
+});
+```
+
 ## JSON Serialization/Deserialization
 
 To generate JSON serialization/deserialization code, you need to use the `@Genq(json: true)` annotation instead of `@genq`. 
@@ -169,9 +199,9 @@ class User with _$User {
     // Customizing the JSON key for the field 'name'. When deserializing, the value of 'full_name' will be assigned to the 'name' field.
     @JsonKey(name: 'full_name')
     required String name,
-    // Providing a default value for the field 'age'. If the field is not present in the JSON, the default value will be used.
+    // Providing a default value for the field 'age'. If the field is not present in the JSON, the default value will be used. This value will also be used in the constructor if the parameter is not 'required'.
     @JsonKey(defaultValue: 99)
-    required int age,
+    int age,
   }) = _User;
 }
 ```
