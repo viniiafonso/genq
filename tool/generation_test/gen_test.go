@@ -37,6 +37,10 @@ func TestEnum(t *testing.T) {
 	testGenOutput(t, "enum")
 }
 
+func TestDefault(t *testing.T) {
+	testGenOutput(t, "default")
+}
+
 func TestCollectionTypes(t *testing.T) {
 	testGenOutput(t, "collection_types")
 }

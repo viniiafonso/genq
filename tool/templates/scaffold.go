@@ -47,7 +47,13 @@ func templateConstructor(str []string, classDecl GenqClassDeclaration) []string 
 			if param.Required {
 				str = append(str, indent(4, fmt.Sprintf("required this.%s,", param.Name)))
 			} else {
-				str = append(str, indent(4, fmt.Sprintf("this.%s,", param.Name)))
+				defaultValue := ""
+
+				if param.Annotation.Identifier.Name == "Default" {
+					defaultValue = fmt.Sprintf(" = %s", param.Annotation.Arguments.PositionalArgs[0].RawValue)
+				}
+
+				str = append(str, indent(4, fmt.Sprintf("this.%s%s,", param.Name, defaultValue)))
 			}
 		}
 		if classDecl.HasPrivateConstructor {
