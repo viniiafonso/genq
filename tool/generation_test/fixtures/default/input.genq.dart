@@ -62,9 +62,9 @@ abstract class $UserCopyWith {
 }
 
 class _$UserCopyWithImpl implements $UserCopyWith {
-  final _$User value;
+  final _$User __value;
 
-  _$UserCopyWithImpl(this.value);
+  _$UserCopyWithImpl(this.__value);
 
   @override
   User call({
@@ -73,9 +73,9 @@ class _$UserCopyWithImpl implements $UserCopyWith {
     Object? defaultString = genq,
   }) {
     return User(
-      defaultBool: defaultBool == genq ? value.defaultBool : defaultBool as bool,
-      defaultInt: defaultInt == genq ? value.defaultInt : defaultInt as int,
-      defaultString: defaultString == genq ? value.defaultString : defaultString as String,
+      defaultBool: defaultBool == genq ? __value.defaultBool : defaultBool as bool,
+      defaultInt: defaultInt == genq ? __value.defaultInt : defaultInt as int,
+      defaultString: defaultString == genq ? __value.defaultString : defaultString as String,
     );
   }
 }
