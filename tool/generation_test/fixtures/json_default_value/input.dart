@@ -8,5 +8,6 @@ class User with _$User {
     @JsonKey(name: 'full_name', defaultValue: 'Supername') required String name,
     @JsonKey(defaultValue: 999) required int? age,
     required bool registered,
+    @JsonKey(defaultValue: 'user@example.com') String email,
   }) = _User;
 }
