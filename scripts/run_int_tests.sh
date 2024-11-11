@@ -9,3 +9,4 @@ if [ -z "$GENQ_PATH" ]; then
 fi
 
 (cd tool/int_test && GENQ_PATH=$GENQ_PATH go test -p 1)
+//test
